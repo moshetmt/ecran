@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="fr">
+<meta charset="utf-8">
+<title>Ecran</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #000; overflow: hidden; cursor: none; }
+  video { position: fixed; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #000; }
+  #h { position: fixed; right: 3vw; bottom: 3vh; color: #fff; font: 600 4vh sans-serif; text-shadow: 0 0 1vh #000; }
+</style>
+<video id="v" src="test.mp4" autoplay muted loop playsinline></video>
+<div id="h"></div>
+<script>
+  var v = document.getElementById('v'), h = document.getElementById('h'), tours = 0, debut = Date.now();
+  v.addEventListener('seeked', function () { if (v.currentTime < 1) tours++; });
+  function lance() { v.play(); if (document.documentElement.requestFullscreen) document.documentElement.requestFullscreen(); }
+  document.addEventListener('keydown', lance);
+  document.addEventListener('click', lance);
+  setInterval(function () {
+    var d = new Date(), m = Math.floor((Date.now() - debut) / 60000);
+    h.textContent = d.toLocaleTimeString('fr-FR') + ' · boucle ' + tours + ' · ' + m + ' min' + (v.paused ? ' · EN PAUSE, appuyer sur OK' : '');
+    if (v.paused) v.play();
+  }, 1000);
+</script>
+</html>
