@@ -1,0 +1,9 @@
+{
+  "name": "ecran",
+  "version": "1.0.0",
+  "description": "Page d'affichage en boucle pour television",
+  "packageType": "app",
+  "appName": "Ecran",
+  "appPath": "index.html",
+  "keys": []
+}
